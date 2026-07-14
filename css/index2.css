@@ -1,0 +1,427 @@
+/* ========== RESET & BASE ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: "Noto Serif", serif;
+    scroll-behavior: smooth;
+}
+
+/* ========== VIDEO BACKGROUND & HERO ========== */
+#main {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+#video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.hero {
+    height: 85%;
+}
+
+.hero h1 {
+    margin-top: 170px;
+}
+
+/* ========== CONTENEDOR PRINCIPAL ========== */
+.main-content {
+    background-color: rgba(255, 220, 200, 0.7);
+}
+
+/* Imágenes dentro de secciones */
+.img-borde {
+    border: 3px solid black;
+    box-shadow: 5px 0 20px rgba(0, 0, 0, 0.3);
+    border-radius: 0.25rem; /* consistente con Bootstrap */
+}
+
+/* ========== FOOTER ========== */
+.footer {
+    background-color: rgba(40, 20, 10, 0.9);
+    color: white;
+}
+
+.footer .destacado {
+    color: #FFD700;
+}
+
+/* ========== ICONOS DE REDES SOCIALES ========== */
+.fa-square-instagram,
+.fa-square-linkedin,
+.fa-square-x-twitter,
+.fa-tiktok,
+.fa-square-facebook {
+    font-size: 1.3rem;
+    transition: transform 0.5s ease;
+    display: inline-block;
+}
+
+/* Instagram */
+.fa-square-instagram {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+.fa-square-instagram:hover {
+    transform: scale(1.4);
+}
+
+/* LinkedIn */
+.fa-square-linkedin {
+    background: linear-gradient(45deg, #0077B5, #0A66C2, #004182);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+.fa-square-linkedin:hover {
+    transform: scale(1.4);
+}
+
+/* X (Twitter) */
+.fa-square-x-twitter {
+    background: linear-gradient(45deg, #000000, #333333);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+.fa-square-x-twitter:hover {
+    transform: scale(1.4);
+}
+
+/* TikTok */
+.fa-tiktok {
+    background: linear-gradient(45deg, #00F2EA, #FF0050, #00F2EA);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+.fa-tiktok:hover {
+    transform: scale(1.4);
+}
+
+/* Facebook */
+.fa-square-facebook {
+    background: linear-gradient(45deg, #1877F2, #0C5DC2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+.fa-square-facebook:hover {
+    transform: scale(1.4);
+}
+
+/* ========== CHATBOT UNIFICADO ========== */
+#chat-widget-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+#chat-toggle-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #1a1440;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+    color: white;
+}
+
+#chat-toggle-btn:hover {
+    transform: scale(1.08);
+}
+
+#chat-window {
+    position: absolute;
+    bottom: 76px;
+    right: 0;
+    width: 340px;
+    max-width: calc(100vw - 32px);
+    height: 460px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#chat-window.open {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#chat-header {
+    background: #402b14;
+    color: #fff;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#chat-status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #2ecc71;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+#chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #f5f5f8;
+}
+
+.chat-msg {
+    max-width: 80%;
+    padding: 10px 13px;
+    border-radius: 14px;
+    font-size: 14px;
+    line-height: 1.4;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.chat-msg-bot {
+    align-self: flex-start;
+    background: #ffffff;
+    color: #1a1440;
+    border: 1px solid #e5e5ea;
+    border-bottom-left-radius: 4px;
+}
+
+.chat-msg-user {
+    align-self: flex-end;
+    background: #1a1440;
+    color: #fff;
+    border-bottom-right-radius: 4px;
+}
+
+.chat-msg-typing {
+    align-self: flex-start;
+    background: #ffffff;
+    border: 1px solid #e5e5ea;
+    color: #999;
+    font-style: italic;
+}
+
+#chat-input-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    border-top: 1px solid #e5e5ea;
+    background: #fff;
+}
+
+#chat-input {
+    flex: 1;
+    border: 1px solid #dcdce3;
+    border-radius: 20px;
+    padding: 10px 14px;
+    font-size: 14px;
+    outline: none;
+}
+
+#chat-input:focus {
+    border-color: #1a1440;
+}
+
+#chat-send-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #402b14;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+#chat-send-btn:hover {
+    background: #2a2260;
+}
+
+/* Ajuste responsive para chatbot */
+@media (max-width: 480px) {
+    #chat-window {
+        width: calc(100vw - 32px);
+        right: 0;
+    }
+}
+/* ========== CARTA (NUEVOS ESTILOS) ========== */
+body {
+    background-color: #fbe1d3;
+}
+
+.titulo-serif {
+    font-family: 'Georgia', serif;
+}
+
+/* Barra decorativa tipo viga metálica */
+.viga {
+    height: 4px;
+    width: 70px;
+    background: linear-gradient(90deg, #b5651d, #4a3b35);
+    border-radius: 4px;
+}
+
+/* Tarjeta de plato estilo placa remachada */
+.menu-card {
+    background: #fff;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    height: 100%;
+    position: relative;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Remaches decorativos */
+.menu-card::before,
+.menu-card::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #c9c2ba;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+.menu-card::before { top: 10px; left: 10px; }
+.menu-card::after  { bottom: 10px; right: 10px; }
+
+/* Imagen dentro de la tarjeta (ahora responsiva) */
+.menu-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+/* Etiqueta de categoría */
+.badge-cat {
+    display: inline-block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #b5651d;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+
+/* Precio */
+.precio-pill {
+    background: #4a3b35;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 50px;
+    padding: 0.15rem 0.75rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+/* Botón "Pagar" */
+.btn-pagar-plato {
+    background-color: #b5651d;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 50px;
+    padding: 0.3rem 0.8rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+}
+.btn-pagar-plato:hover {
+    background-color: #7a2e0e;
+    color: #fff;
+}
+body { background-color: #fbe1d3; }
+        .titulo-serif { font-family: 'Georgia', serif; }
+        .pago-card {
+            background: #fff;
+            border-radius: .75rem;
+            box-shadow: 0 6px 16px rgba(0,0,0,.08);
+        }
+        /* Métodos de pago */
+        .metodo-opcion input { display: none; }
+        .metodo-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .4rem;
+            border: 2px solid #e5e0da;
+            border-radius: .6rem;
+            padding: 1rem .5rem;
+            cursor: pointer;
+            color: #4a3b35;
+            transition: border-color .15s, background-color .15s;
+        }
+        .metodo-label i { font-size: 1.6rem; }
+        .metodo-opcion input:checked + .metodo-label {
+            border-color: #b5651d;
+            background-color: #fff4ec;
+        }
+        .precio-total {
+            color: #b5651d;
+            font-weight: bold;
+        }
+        #panel-yape img { width: 160px; height: 160px; }
+        .btn-pagar {
+            background-color: #4a3b35;
+            color: #fff;
+        }
+        .btn-pagar:hover {
+            background-color: #2f2521;
+            color: #fff;
+        }
+        .exito {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
